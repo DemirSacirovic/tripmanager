@@ -1,5 +1,9 @@
 # Trip Manager
 
+[![CI](https://github.com/DemirSacirovic/tripmanager/actions/workflows/ci.yml/badge.svg)](https://github.com/DemirSacirovic/tripmanager/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Django](https://img.shields.io/badge/django-5.x-green.svg)](https://www.djangoproject.com/)
+
 Corporate travel management REST API built with Django and Django REST Framework.
 
 ## Features
@@ -38,6 +42,12 @@ python manage.py runserver
 ```
 
 API available at: http://localhost:8000/api/
+
+### Docker
+
+```bash
+docker-compose up --build
+```
 
 ## API Endpoints
 
