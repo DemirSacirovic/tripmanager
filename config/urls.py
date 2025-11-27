@@ -22,7 +22,7 @@ from rest_framework.routers import DefaultRouter
 from trips.views_api import TravelerViewSet, TripViewSet
 
 router = DefaultRouter()
-router.register("trips", TripViewSet)
+router.register("trips", TripViewSet, basename="trip")
 router.register("travelers", TravelerViewSet)
 
 urlpatterns = [
