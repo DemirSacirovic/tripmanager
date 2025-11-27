@@ -1,65 +1,78 @@
-  ```markdown
-  # Trip Manager
+# Trip Manager
 
-  Corporate travel management system built with Django and Django REST
-  Framework.
+Corporate travel management REST API built with Django and Django REST Framework.
 
-  ## Features
+## Features
 
-  - Traveler management (CRUD operations)
-  - Trip management with approval workflow
-  - Flight search integration (3rd party API ready)
-  - Custom permissions (owner-based access control)
-  - RESTful API with browsable interface
+- **Traveler Management** - Full CRUD for employee travel profiles
+- **Trip Workflow** - Draft → Pending → Approved/Rejected status flow
+- **Custom Permissions** - Owner-based access control
+- **Django Admin** - Customized admin panel with bulk actions
+- **Flight Search** - 3rd party API integration with retry logic
+- **N+1 Prevention** - Optimized queries with select_related
 
-  ## Tech Stack
+## Tech Stack
 
-  - Python 3.x
-  - Django 5.x
-  - Django REST Framework
-  - SQLite (development)
+| Technology | Purpose |
+|------------|---------|
+| Python 3.x | Language |
+| Django 5.x | Web framework |
+| Django REST Framework | API |
+| SQLite | Development database |
 
-  ## Installation
+## Quick Start
 
-  1. Clone the repository
-  2. Create virtual environment:
-     ```bash
-     python -m venv venv
-     source venv/bin/activate
-  3. Install dependencies:
-  pip install django djangorestframework requests
-  4. Run migrations:
-  python manage.py migrate
-  5. Create superuser:
-  python manage.py createsuperuser
-  6. Run server:
-  python manage.py runserver
+```bash
+# Clone and setup
+git clone https://github.com/DemirSacirovic/tripmanager.git
+cd tripmanager
 
-  API Endpoints
+# Virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-  | Endpoint                 | Method | Description        |
-  |--------------------------|--------|--------------------|
-  | /api/trips/              | GET    | List all trips     |
-  | /api/trips/              | POST   | Create new trip    |
-  | /api/trips/{id}/         | GET    | Get trip details   |
-  | /api/trips/{id}/approve/ | POST   | Approve trip       |
-  | /api/trips/{id}/reject/  | POST   | Reject trip        |
-  | /api/travelers/          | GET    | List all travelers |
+# Install and run
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
 
-  Running Tests
+API available at: http://localhost:8000/api/
 
-  python manage.py test
+## API Endpoints
 
-  Project Structure
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/trips/` | GET | List all trips |
+| `/api/trips/` | POST | Create new trip |
+| `/api/trips/{id}/` | GET/PUT/DELETE | Trip details |
+| `/api/trips/{id}/approve/` | POST | Approve pending trip |
+| `/api/trips/{id}/reject/` | POST | Reject pending trip |
+| `/api/trips/{id}/submit/` | POST | Submit draft for approval |
+| `/api/travelers/` | GET/POST | Traveler list/create |
 
-  tripmanager/
-  ├── config/          # Django project settings
-  ├── trips/           # Main application
-  │   ├── models.py    # Data models (Trip, Traveler)
-  │   ├── views_api.py # DRF ViewSets
-  │   ├── serializers.py
-  │   ├── permissions.py
-  │   └── services.py  # External API integration
-  └── manage.py
+## Testing
 
-  ---
+```bash
+python manage.py test trips
+```
+
+## Project Structure
+
+```
+tripmanager/
+├── config/              # Project settings
+├── trips/
+│   ├── models.py        # Trip, Traveler models
+│   ├── views_api.py     # DRF ViewSets
+│   ├── serializers.py   # Request/response validation
+│   ├── permissions.py   # Owner-based access control
+│   ├── services.py      # External API integration
+│   ├── admin.py         # Custom admin configuration
+│   └── tests.py         # API tests
+└── manage.py
+```
+
+## Author
+
+**Demir Sacirovic** - Backend Developer
